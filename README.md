@@ -213,3 +213,24 @@ nmap --script smb-vuln* -p 139,445 10.10.10.10
 • SMB2.1 – Windows 7 and Windows 2008 R2
 • SMB3 – Windows 8 and Windows 2012.
 ````
+
+# Web Application Enumeration / Exploitation - Port 80,443,8080
+#### Make sure that you enumerate, and enumerate some more. :wink:
+![image](https://user-images.githubusercontent.com/80599694/147911298-00e672ff-9bb8-475c-ac03-a00ab3cb170c.png)
+## Web Application Enumeration Checklist:
+````bash
+1. Checkout the entire webpage and what it is displaying.
+2. Read every page, look for emails, names, user info, etc.
+3. Directory Discovery (time to dir bust!)
+4. Enumerate the interface, what is the CMS & Version? Server installation page?
+5. Check for potential Local File Inclusion, Remote File Inclusion, SQL Injection, XXE, and Upload vulnerabilities
+6. Check for a default server page, identify the server version
+7. View Source Code:
+      a. Check for hidden values
+      b. Check for comments/developer remarks
+      c. Check for Extraneous Code
+      d. Check for passwords
+8. Check for robots.txt file
+9. Web Scanning
+````
+
