@@ -291,6 +291,16 @@ sqlmap -u http://10.10.10.10 --dump
 #### I highly suggest you learn how to use John The Ripper, Hydra, and how to unshadow passwd files. :wink:
 ![image](https://user-images.githubusercontent.com/80599694/147914303-6417c637-a380-41d7-a716-76cbc6b4ff9e.png)
 
+### Unshadow
+#### This will prepare the file for John The Ripper, you need a Passwd & Shadow File.
+````bash
+unshadow passwd shadow > unshadow
+````
+### Hash Cracking - John The Ripper
+````bash
+john -wordlist /path/to/wordlist -users=users.txt hashfile
+````
+
 # Networking - Routing
 #### I highly recommend that you get comfortable with general networking and routing concepts, including be able to read and understand .PCAP files.
 ![image](https://user-images.githubusercontent.com/80599694/147913167-35155f9d-f7f5-473e-90f9-302f0b5d7bb2.png)
