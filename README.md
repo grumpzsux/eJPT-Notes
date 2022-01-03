@@ -326,7 +326,8 @@ ssh -C2qTnN -D 12001 user@target.host
 #### I highly recommend getting comfortable with metasploit, and meterpreter just incase you find Remote Code Execution, and spawn a shell.
 ![image](https://user-images.githubusercontent.com/80599694/147913813-b8f42c43-3377-420f-ad8a-7524f50192ed.png)
 
-### Use Meterpreter Commands (reverse shell)
+### Useful Meterpreter Commands (reverse shell)
+##### these are few commands that I feel will help you during the exam
 ````bash
 background
 sessions -l
