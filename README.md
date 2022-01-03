@@ -51,3 +51,26 @@ nmap -sn 10.10.10.0/24 -oN hosts.nmap
 # Find Common Vulnerabilities
 #### After you have done all of your scans, and identified open ports on your target, it's time to see if any services are vulnerable.
 ![image](https://user-images.githubusercontent.com/80599694/147908174-3d6663e0-4049-4471-969c-f43db2c9c74e.png)
+
+#### Common Ports to Look at:
+| Port | Protocol |
+| ------------- |:-------------:|
+| 21 | FTP |
+| 22 | SSH |
+| 23 | TELNET |
+| 25 | SMTP |
+| 53 | DNS |
+| 80 | HTTP |
+| 443 | HTTPS |
+| 110 | POP3 |
+| 115 | SFTP |
+| 143 | IMAP |
+| 135 | MSRPC |
+| 137 | NETBIOS |
+| 138 | NETBIOS |
+| 139 | NETBIOS |
+| 445 | SMB |
+| 3306 | MYSQL | 
+| 1433 | MYSQL | 
+| 3389 | RDP |
+
