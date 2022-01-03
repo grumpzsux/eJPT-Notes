@@ -74,3 +74,84 @@ nmap -sn 10.10.10.0/24 -oN hosts.nmap
 | 1433 | MYSQL | 
 | 3389 | RDP |
 
+### Use Nmap as a Lightweight Vulnerability Scanner
+````bash
+nmap -sV --script=vulners -v 10.10.10.1
+````
+##### if you do not have vulners installed, please install here: https://github.com/vulnersCom/nmap-vulners
+````bash
+nmap --script vuln --script-args=unsafe=1 -iL hosts.nmap
+````
+
+## Port 21 - FTP Enumeration
+##### Sometimes clues are put here. :wink: Old versions of FTP maybe vulnerable. Always check the version. Search for the exploit using Google / Searchsploit / Rapid7. If you find some credential, try it on SSH / Login page / database.
+
+#### Enumerate FTP Service with Nmap:
+````bash
+nmap --script=ftp-anon,ftp-bounce,ftp-libopie,ftp-proftpd-backdoor,ftp-vsftpd-backdoor,ftp-vuln-cve2010-4221,tftp-enum -p 21 $ip
+````
+#### Check for FTP Vulnerabilities with Nmap:
+````bash
+nmap --script=ftp-* -p 21 10.10.10.1
+````
+#### Connect to FTP Service:
+````bash
+ftp 10.10.10.1
+````
+````bash
+ncftp 10.10.10.1
+````
+##### Many ftp-servers allow anonymous users. anonymous:anonymous 👈️
+
+#### Bruteforce FTP with a Known Username You Found:
+````bash
+hydra -l $user -P /usr/share/john/password.lst ftp://10.10.10.1:21
+````
+````bash
+hydra -l $user -P /usr/share/wordlistsnmap.lst -f 10.10.10.1 ftp -V
+````
+````bash
+medusa -h 10.10.10.1 -u $user -P passwords.txt -M ftp
+````
+
+#### Enumerate Users on FTP Service:
+````bash
+ftp-user-enum.pl -U users.txt -t 10.10.10.1
+````
+````bash
+ftp-user-enum.pl -M iu -U users.txt -t $ip
+````
+##### If you do not have ftp-user-enum.pl, you can download it here: https://pentestmonkey.net/tools/ftp-user-enum/ftp-user-enum-1.0.tar.gz
+
+#### Useful Commands for FTP Service (cmd line):
+````bash
+• send # Send single file
+• put # Send one file.
+• mput # Send multiple files.
+• mget # Get multiple files.
+• get # Get file from the remote computer.
+• ls # list 
+• mget * # Download everything
+• binary = Switches to binary transfer mode.
+• ascii = Switch to ASCII transfer mode
+````
+#### Always Check for FTP Configuration Files:
+````bash
+• ftpusers
+• ftp.conf
+• proftpd.conf
+````
+##### Vulnerable FTP Versions:
+````bash
+• ProFTPD-1.3.3c Backdoor
+• ProFTPD 1.3.5 Mod_Copy Command Execution
+• VSFTPD v2.3.4 Backdoor Command Execution
+````
+#### FTP Exploitation Methodology:
+````bash
+1. Gather version numbers
+2. Check Searchsploit
+3. Check for Default Creds
+4. Use Creds previously gathered
+5. Download the software
+````
