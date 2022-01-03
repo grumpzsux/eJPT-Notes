@@ -155,3 +155,61 @@ ftp-user-enum.pl -M iu -U users.txt -t $ip
 4. Use Creds previously gathered
 5. Download the software
 ````
+## Port 445 - SMB Enumeration
+#### Always check for SMB.  You might get lucky and find a vulnerable machine running SMB that has remote code execution.  Remember to use searchsploit, or google to check all service versions for publicly available exploits.
+
+#### Scan for NETBIOS/SMB Service with Nmap:
+````bash
+nmap -p 139,445 --open -oG smb.txt 192.168.1.0/24
+````
+#### Scan for NETBIOS/SMB Service with nbtscan:
+````bash
+nbtscan -r 192.168.1.0/24
+````
+
+#### Enumerate the Hostname:
+````bash
+nmblookup -A 10.10.10.1
+````
+#### Check for Null Sessions:
+````bash
+smbmap -H 10.10.10.1
+````
+````bash
+rpcclient -U "" -N 10.10.10.1
+````
+````bash
+smbclient \\\\$ip\\ShareName
+`````
+##### if getting error "protocol negotiation failed: NT_STATUS_CONNECTION_DISCONNECTED"
+````bash
+smbclient -L //10.10.10.3/ --option='client min protocol=NT1'
+````
+
+#### List Shares:
+````bash
+smbmap -H 10.10.1.1
+````
+````bash
+echo exit | smbclient -L \\\\10.10.10.10
+````
+````bash
+nmap --script smb-enum-shares -p 139,445 10.10.10.10
+````
+#### Check for SMB Vulnerabilities with Nmap:
+````bash
+nmap --script smb-vuln* -p 139,445 $ip
+````
+#### Vulnerable Versions:
+````bash
+• Windows NT, 2000, and XP (most SMB1) - VULNERABLE: Null Sessions can be created by default
+• Windows 2003, and XP SP2 onwards - NOT VULNERABLE: Null Sessions can't be created default
+• Most Samba (Unix) servers
+````
+#### List of SMB versions and corresponding Windows versions:
+````bash
+• SMB1 – Windows 2000, XP and Windows 2003.
+• SMB2 – Windows Vista SP1 and Windows 2008
+• SMB2.1 – Windows 7 and Windows 2008 R2
+• SMB3 – Windows 8 and Windows 2012.
+````
