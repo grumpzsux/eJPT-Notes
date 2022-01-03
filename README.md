@@ -336,6 +336,12 @@ ssh -R 12340:localhost:9999 user@192.168.0.100
 
 ssh -C2qTnN -D 12001 user@target.host
 ````
+### Network/Service Attacks
+#### You may need to bruteforce a service running, such as SSH, FTP, etc. Just replace the service name below to bruteforce.
+```bash
+hydra -L users.txt -P pass.txt -t 10 10.10.10.10 ssh -s 22
+hydra -L users.txt -P pass.txt telnet://10.10.10.10
+```
 # Using Metasploit
 #### I highly recommend getting comfortable with metasploit, and meterpreter just incase you find Remote Code Execution, and spawn a shell.
 ![image](https://user-images.githubusercontent.com/80599694/147913813-b8f42c43-3377-420f-ad8a-7524f50192ed.png)
