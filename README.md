@@ -198,7 +198,7 @@ nmap --script smb-enum-shares -p 139,445 10.10.10.10
 ````
 #### Check for SMB Vulnerabilities with Nmap:
 ````bash
-nmap --script smb-vuln* -p 139,445 $ip
+nmap --script smb-vuln* -p 139,445 10.10.10.10
 ````
 #### Vulnerable Versions:
 ````bash
