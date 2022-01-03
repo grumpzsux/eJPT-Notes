@@ -233,4 +233,46 @@ nmap --script smb-vuln* -p 139,445 10.10.10.10
 8. Check for robots.txt file
 9. Web Scanning
 ````
-
+### Directory Discovery/Dir Busting:
+````bash
+gobuster dir -u 10.10.10.181 -w /usr/share/seclists/Discovery/Web-Content/common.txt
+````
+#### Gobuster Quick Directory Discovery
+````bash
+gobuster -u $ip -w /usr/share/seclists/Discovery/Web_Content/common.txt -t 80 -a Linux
+`````
+#### Gobuster Directory Busting:
+````bash
+wget https://raw.githubusercontent.com/danielmiessler/SecLists/master/Discovery/Web-Content/Top1000-RobotsDisallowed.txt; gobuster -u http://10.10.10.10. -w Top1000-RobotsDisallowed.txt
+````
+````bash
+gobuster dir -u http://$ip -w /usr/share/wordlists/dirbuster/directory-list-lowercase-2.3-medium.txt -x php -o gobuster-root -t 50
+````
+#### Gobuster comprehensive directory busting:
+````bash
+gobuster -s 200,204,301,302,307,403 -u 10.10.10.10 -w /usr/share/seclists/Discovery/Web_Content/big.txt -t 80 -a 'Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101 Firefox/52.0'
+````
+#### Gobuster search with file extension:
+````bash
+gobuster -u 10.10.10.10 -w /usr/share/seclists/Discovery/Web_Content/common.txt -t 80 -a Linux -x .txt,.php
+````
+#### wfuzz search with files:
+````bash
+wfuzz -c -z file,/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt --sc 200 http://10.10.10.10/FUZZ
+````
+#### Erodir by PinkP4nther
+````bash
+./erodir -u http://10.10.10.10 -e /usr/share/wordlists/dirb/common.txt -t 20
+````
+#### dirsearch.py
+````bash
+cd /root/dirsearch; python3 dirsearch.py  -u http://10.10.10.10/ -e .php
+````
+#### If you are really stuck, run this:
+````bash
+for file in $(ls /usr/share/seclists/Discovery/Web-Content); do gobuster -u http://$ip/ -w /usr/share/seclists/Discovery/Web-Content/$file -e -k -l -s "200,204,301,302,307" -t 20 ; done
+````
+#### Check different extensions:
+````bash
+sh,txt,php,html,htm,asp,aspx,js,xml,log,json,jpg,jpeg,png,gif,doc,pdf,mpg,mp3,zip,tar.gz,tar
+````
