@@ -287,6 +287,10 @@ sqlmap -u http://10.10.10.10  --data POSTstring -p parameter
 sqlmap -u http://10.10.10.10 --os-shell
 sqlmap -u http://10.10.10.10 --dump
 ````
+# Password Cracking
+#### I highly suggest you learn how to use John The Ripper, Hydra, and how to unshadow passwd files. :wink:
+![image](https://user-images.githubusercontent.com/80599694/147914303-6417c637-a380-41d7-a716-76cbc6b4ff9e.png)
+
 # Networking - Routing
 #### I highly recommend that you get comfortable with general networking and routing concepts, including be able to read and understand .PCAP files.
 ![image](https://user-images.githubusercontent.com/80599694/147913167-35155f9d-f7f5-473e-90f9-302f0b5d7bb2.png)
@@ -326,8 +330,16 @@ ssh -C2qTnN -D 12001 user@target.host
 #### I highly recommend getting comfortable with metasploit, and meterpreter just incase you find Remote Code Execution, and spawn a shell.
 ![image](https://user-images.githubusercontent.com/80599694/147913813-b8f42c43-3377-420f-ad8a-7524f50192ed.png)
 
+### Basic Metasploit Commands
+````bash
+search x
+use x
+info
+show options, show advanced options
+SET X (e.g. set RHOST 10.10.10.10, set payload x)
+````
+
 ### Useful Meterpreter Commands (reverse shell)
-##### these are few commands that I feel will help you during the exam
 ````bash
 background
 sessions -l
