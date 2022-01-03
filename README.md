@@ -287,3 +287,6 @@ sqlmap -u http://10.10.10.10  --data POSTstring -p parameter
 sqlmap -u http://10.10.10.10 --os-shell
 sqlmap -u http://10.10.10.10 --dump
 ````
+# Networking - Routing
+#### I highly recommend that you get comfortable with general networking and routing concepts, including be able to read and understand .PCAP files.
+![image](https://user-images.githubusercontent.com/80599694/147913167-35155f9d-f7f5-473e-90f9-302f0b5d7bb2.png)
